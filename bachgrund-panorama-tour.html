@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bachgrund-Panorama-Tour · Radtour ab Pension Heuler · Eußenheim</title>
+<meta name="description" content="Die Bachgrund-Panorama-Tour: rund 33 km Rundtour ab Pension Heuler in Eußenheim – über die Höhen des Aschgrunds, vorbei am Windpark Heßlar und zur historischen Kirchenburg Aschfeld.">
+
+<!-- Fonts: für die Preview per Google Fonts; für die finale self-contained Datei können wir sie als Base64 inlinen -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   Pension Heuler — Relaunch-Preview
+   Präfix: ph-   |   Standard-CSS, kein Framework
+   Palette (Vorschlag, "locken"):
+     beige  #f7efe0 / #fbf6ec / #fffdf8   (Grundton bleibt)
+     bordeaux #7a1e22 / hover #93292f      (Hausfarbe aus alter Navi)
+     gold    #b8893b                       (4-Sterne-Akzent)
+     ink     #2b2521  /  muted #6f6357
+   ========================================================= */
+
+:root{
+  --ph-beige:      #f7efe0;
+  --ph-beige-2:    #fbf6ec;
+  --ph-card:       #fffdf8;
+  --ph-bordeaux:   #7a1e22;
+  --ph-bordeaux-2: #93292f;
+  --ph-gold:       #b8893b;
+  --ph-ink:        #2b2521;
+  --ph-muted:      #6f6357;
+  --ph-line:       rgba(122,30,34,0.14);
+  --ph-shadow:     0 18px 50px -28px rgba(43,37,33,0.45);
+  --ph-radius:     16px;
+  --ph-maxw:       1180px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--ph-beige);
+  color:var(--ph-ink);
+  font-family:"Mulish",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:500;
+  line-height:1.12;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+p{margin:0 0 1em}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+.ph-wrap{width:100%;max-width:var(--ph-maxw);margin:0 auto;padding:0 28px}
+
+/* ---- Signature: Giebel-/Dach-Eyebrow (aus dem Logo abgeleitet) ---- */
+.ph-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:"Mulish",sans-serif;font-weight:700;
+  font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ph-bordeaux);margin-bottom:18px;
+}
+.ph-eyebrow::before{
+  content:"";width:22px;height:13px;
+  background:var(--ph-gold);
+  -webkit-clip-path:polygon(50% 0,100% 100%,0 100%);
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+
+/* =========================== TOPBAR =========================== */
+.ph-topbar{
+  background:var(--ph-bordeaux);color:#f3e2c8;
+  font-size:.85rem;
+}
+.ph-topbar .ph-wrap{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:16px;min-height:42px;flex-wrap:wrap;
+}
+.ph-topbar a{text-decoration:none;color:#f3e2c8;opacity:.92}
+.ph-topbar a:hover{opacity:1}
+.ph-top-contact{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+.ph-top-contact span{display:inline-flex;align-items:center;gap:7px}
+.ph-lang{display:flex;gap:6px;align-items:center}
+.ph-lang a{
+  padding:2px 8px;border-radius:6px;font-weight:700;letter-spacing:.04em;
+}
+.ph-lang a.is-active{background:rgba(255,255,255,.16)}
+.ph-top-right{display:flex;align-items:center;gap:20px}
+
+/* =========================== SOCIAL-ICONS (Topbar + Footer) =========================== */
+.ph-social{display:inline-flex;align-items:center;gap:13px}
+.ph-social a{display:inline-flex;color:inherit;opacity:.9;transition:opacity .2s ease,transform .2s ease}
+.ph-social a:hover{opacity:1;transform:translateY(-1px)}
+.ph-social svg{width:18px;height:18px;display:block;fill:currentColor}
+
+/* =========================== HEADER =========================== */
+.ph-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,239,224,.86);
+  backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid var(--ph-line);
+  transition:box-shadow .25s ease,background .25s ease;
+}
+.ph-header.is-scrolled{box-shadow:0 10px 30px -22px rgba(43,37,33,.55)}
+.ph-header .ph-wrap{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;min-height:84px;max-width:1300px;
+}
+
+/* Logo-Platzhalter — hier kommt dein echtes Logo rein */
+.ph-logo{display:flex;align-items:center;gap:13px;text-decoration:none;color:inherit;flex:0 0 auto}
+.ph-logo-img{height:54px;width:auto;display:block}
+.ph-logo-mark{
+  width:54px;height:54px;flex:0 0 auto;border-radius:12px;
+  background:
+    radial-gradient(circle at 70% 78%, rgba(184,137,59,.0) 0 38%, transparent 39%),
+    linear-gradient(150deg,var(--ph-bordeaux),#a23a2f);
+  display:grid;place-items:center;color:#fff;
+  position:relative;overflow:hidden;
+}
+.ph-logo-mark::before{ /* Giebel */
+  content:"";width:30px;height:18px;background:#f3e2c8;
+  -webkit-clip-path:polygon(50% 0,100% 100%,0 100%);
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+.ph-logo-mark::after{ /* Vogelbeeren-Andeutung */
+  content:"";position:absolute;bottom:11px;width:18px;height:6px;border-radius:6px;
+  background:var(--ph-gold);
+}
+.ph-logo-txt{line-height:1.05}
+.ph-logo-txt small{
+  display:block;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ph-muted);
+}
+.ph-logo-txt b{
+  font-family:"Fraunces",serif;font-weight:600;font-size:1.34rem;
+  display:block;letter-spacing:-.01em;white-space:nowrap;margin-top:2px;
+}
+.ph-logo-txt .ph-stars{color:var(--ph-gold);letter-spacing:.12em}
+
+/* Nav */
+.ph-nav{display:flex;align-items:center;gap:2px}
+.ph-nav a{
+  text-decoration:none;font-weight:600;font-size:.88rem;
+  padding:9px 10px;border-radius:9px;color:var(--ph-ink);
+  transition:background .18s ease,color .18s ease;white-space:nowrap;
+}
+.ph-nav a:hover,.ph-nav a:focus-visible{background:rgba(122,30,34,.08);color:var(--ph-bordeaux)}
+.ph-nav a.is-active{color:var(--ph-bordeaux)}
+
+.ph-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ph-bordeaux);color:#fff;text-decoration:none;
+  font-weight:700;font-size:.88rem;padding:11px 17px;border-radius:999px;white-space:nowrap;flex:0 0 auto;
+  border:0;cursor:pointer;transition:background .18s ease,transform .18s ease;
+}
+.ph-cta:hover{background:var(--ph-bordeaux-2);transform:translateY(-1px)}
+.ph-cta.ph-cta-ghost{
+  background:transparent;color:var(--ph-bordeaux);
+  border:1.5px solid var(--ph-bordeaux);
+}
+.ph-cta.ph-cta-ghost:hover{background:rgba(122,30,34,.07)}
+
+.ph-burger{
+  display:none;width:46px;height:46px;border:1px solid var(--ph-line);
+  background:var(--ph-card);border-radius:11px;cursor:pointer;
+  align-items:center;justify-content:center;
+}
+.ph-burger span,.ph-burger span::before,.ph-burger span::after{
+  content:"";display:block;width:20px;height:2px;background:var(--ph-ink);
+  border-radius:2px;position:relative;transition:.2s;
+}
+.ph-burger span::before{position:absolute;top:-6px}
+.ph-burger span::after{position:absolute;top:6px}
+
+/* =========================== HERO / VIDEO =========================== */
+.ph-hero{
+  position:relative;min-height:clamp(420px,60vh,560px);
+  display:flex;align-items:flex-end;
+  color:#fff;overflow:hidden;
+}
+/* ====== HIER kommt dein Video bzw. das Panorama rein ======
+   Variante Video:    <video class="ph-hero-media" autoplay muted loop playsinline poster="…">…</video>
+   Variante Panorama: <img class="ph-hero-media" src="PANORAMA.jpg" alt="Pension Heuler">
+   Den Platzhalter (.ph-hero-placeholder) dann einfach entfernen.        */
+.ph-hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;z-index:0}
+.ph-hero-placeholder{
+  position:absolute;inset:0;z-index:0;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 2px, transparent 2px 22px),
+    linear-gradient(160deg,#5d161a 0%,#8a2b22 48%,#b8893b 130%);
+  display:grid;place-items:center;
+}
+.ph-hero-placeholder .ph-ph-label{
+  text-align:center;color:rgba(255,255,255,.9);max-width:340px;padding:20px;
+}
+.ph-hero-placeholder .ph-play{
+  width:78px;height:78px;border-radius:50%;margin:0 auto 16px;
+  background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.7);
+  display:grid;place-items:center;backdrop-filter:blur(2px);
+}
+.ph-hero-placeholder .ph-play::before{
+  content:"";width:0;height:0;margin-left:5px;
+  border-left:22px solid #fff;border-top:13px solid transparent;border-bottom:13px solid transparent;
+}
+.ph-hero-placeholder small{font-family:"Mulish";letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;opacity:.85}
+.ph-hero::after{ /* Lesbarkeits-Verlauf */
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top, rgba(40,18,12,.78) 0%, rgba(40,18,12,.18) 45%, rgba(40,18,12,.05) 100%);
+}
+.ph-hero-inner{position:relative;z-index:2;width:100%}
+.ph-hero-inner .ph-wrap{padding-top:56px;padding-bottom:56px}
+.ph-hero .ph-eyebrow{color:var(--ph-bordeaux)}
+.ph-hero .ph-eyebrow::before{background:var(--ph-bordeaux)}
+.ph-hero h1{
+  font-size:clamp(2.2rem,5.2vw,4rem);max-width:16ch;
+  text-shadow:0 2px 24px rgba(0,0,0,.35);font-weight:500;
+}
+.ph-hero p{
+  font-size:clamp(1.02rem,1.7vw,1.28rem);max-width:46ch;margin-top:18px;
+  color:rgba(255,255,255,.92);text-shadow:0 1px 12px rgba(0,0,0,.4);
+}
+.ph-hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.ph-hero-actions .ph-cta-ghost{color:#fff;border-color:rgba(255,255,255,.8)}
+.ph-hero-actions .ph-cta-ghost:hover{background:rgba(255,255,255,.14)}
+
+/* Quick-Fakten-Leiste unter Hero */
+.ph-facts{
+  background:var(--ph-bordeaux);color:#f6e7cd;
+}
+.ph-facts .ph-wrap{
+  display:flex;align-items:center;gap:30px;
+  padding-top:18px;padding-bottom:18px;
+}
+.ph-facts-bb{flex:0 0 auto;display:block;line-height:0;border-radius:10px}
+.ph-facts-bb img{height:60px;width:auto;display:block}
+.ph-facts-bb:focus-visible{outline:3px solid var(--ph-gold);outline-offset:3px}
+.ph-facts-cols{
+  flex:1 1 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;
+}
+.ph-facts b{display:block;font-family:"Fraunces",serif;font-size:1.5rem;font-weight:600;color:#fff}
+.ph-facts span{font-size:.82rem;letter-spacing:.04em;opacity:.9}
+
+/* =========================== SECTIONS =========================== */
+.ph-section{padding:88px 0}
+.ph-section.alt{background:var(--ph-beige-2)}
+.ph-section-head{max-width:62ch}
+.ph-section-head h2{font-size:clamp(1.8rem,3.6vw,2.7rem)}
+.ph-section-head p{color:var(--ph-muted);margin-top:14px;font-size:1.08rem}
+
+/* Welcome split */
+.ph-split{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+.ph-split .ph-body p{color:var(--ph-muted);font-size:1.06rem}
+.ph-split .ph-body h2{margin-bottom:18px}
+
+/* Bild-Platzhalter (echte Fotos liefert Werner via Excel-Workflow) */
+.ph-photo{
+  position:relative;border-radius:var(--ph-radius);overflow:hidden;
+  background:linear-gradient(135deg,#eadbbf,#ddc8a2);
+  box-shadow:var(--ph-shadow);
+  aspect-ratio:4/3;display:grid;place-items:center;
+}
+.ph-photo[data-ratio="tall"]{aspect-ratio:3/4}
+.ph-photo[data-ratio="wide"]{aspect-ratio:16/10}
+.ph-photo .ph-photo-tag{
+  text-align:center;color:#8a7654;font-weight:600;padding:14px;
+}
+.ph-photo .ph-photo-tag .ph-gable{
+  width:26px;height:15px;background:#bba775;margin:0 auto 8px;
+  -webkit-clip-path:polygon(50% 0,100% 100%,0 100%);clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+.ph-photo .ph-photo-tag small{display:block;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.66rem;opacity:.8;margin-top:3px}
+
+/* Feature-Karten */
+.ph-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:46px}
+.ph-feature{
+  background:var(--ph-card);border:1px solid var(--ph-line);
+  border-radius:var(--ph-radius);padding:30px 26px;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.ph-feature:hover{transform:translateY(-4px);box-shadow:var(--ph-shadow)}
+.ph-feature .ph-ico{
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
+  background:rgba(122,30,34,.08);color:var(--ph-bordeaux);margin-bottom:16px;
+}
+.ph-feature .ph-ico svg{width:24px;height:24px}
+.ph-feature h3{font-size:1.22rem;margin-bottom:8px}
+.ph-feature p{color:var(--ph-muted);font-size:.97rem;margin:0}
+
+/* Zwei-Spalten-Teaser (Frühstück / Zimmer) */
+.ph-teasers{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:46px}
+.ph-teaser{
+  background:var(--ph-card);border:1px solid var(--ph-line);border-radius:var(--ph-radius);
+  overflow:hidden;box-shadow:var(--ph-shadow);
+  display:flex;flex-direction:column;
+}
+.ph-teaser .ph-photo{border-radius:0;box-shadow:none;aspect-ratio:16/9}
+.ph-teaser-body{padding:28px 28px 30px}
+.ph-teaser-body h3{font-size:1.5rem;margin-bottom:10px}
+.ph-teaser-body p{color:var(--ph-muted)}
+.ph-teaser-body a{
+  display:inline-flex;align-items:center;gap:8px;margin-top:10px;
+  color:var(--ph-bordeaux);font-weight:700;text-decoration:none;
+}
+.ph-teaser-body a:hover{gap:12px}
+
+/* Bett+Bike / Hund — kleine Info-Bänder */
+.ph-badges{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:46px}
+.ph-badge h3.is-bb{color:var(--ph-bordeaux)}
+.ph-badge .ph-badge-bbmark{
+  font-family:"Mulish",sans-serif;font-weight:800;color:var(--ph-bordeaux);
+  line-height:1;font-size:1.04rem;letter-spacing:-.01em;text-transform:lowercase;
+}
+.ph-badge .ph-badge-bbmark small{
+  display:block;font-size:.6rem;letter-spacing:.2em;margin-top:4px;font-weight:700;
+}
+.ph-badge{
+  display:flex;gap:20px;align-items:center;
+  background:var(--ph-card);border:1px solid var(--ph-line);
+  border-radius:var(--ph-radius);padding:26px;
+}
+.ph-badge .ph-badge-mark{
+  flex:0 0 auto;width:84px;height:84px;border-radius:14px;
+  display:grid;place-items:center;text-align:center;
+  background:rgba(184,137,59,.12);color:var(--ph-gold);
+}
+.ph-badge .ph-badge-mark .ph-stars{font-size:1rem;letter-spacing:.06em}
+.ph-badge .ph-badge-mark b{font-family:"Fraunces",serif;font-size:1.7rem;color:var(--ph-gold);display:block}
+.ph-badge h3{font-size:1.12rem;margin-bottom:5px}
+.ph-badge p{margin:0;color:var(--ph-muted);font-size:.95rem}
+
+/* CTA-Band */
+.ph-cta-band{
+  background:linear-gradient(150deg,var(--ph-bordeaux),#5d161a);
+  color:#fff;text-align:center;
+}
+.ph-cta-band .ph-wrap{padding:74px 28px}
+.ph-cta-band .ph-eyebrow{color:#f3d9a6}
+.ph-cta-band .ph-eyebrow::before{background:#f3d9a6}
+.ph-cta-band h2{font-size:clamp(1.9rem,4vw,2.8rem);max-width:18ch;margin:0 auto}
+.ph-cta-band p{color:rgba(255,255,255,.86);max-width:48ch;margin:16px auto 0}
+.ph-cta-band .ph-cta{background:#fff;color:var(--ph-bordeaux);margin-top:30px}
+.ph-cta-band .ph-cta:hover{background:#f6e7cd}
+
+/* =========================== FOOTER =========================== */
+.ph-footer{background:#2b1112;color:#d8c6ad;font-size:.95rem}
+.ph-footer .ph-wrap{padding:60px 28px 30px}
+.ph-foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.ph-footer h4{font-family:"Fraunces",serif;font-weight:500;color:#fff;font-size:1.15rem;margin:0 0 14px}
+.ph-footer a{color:#d8c6ad;text-decoration:none}
+.ph-footer a:hover{color:#fff}
+.ph-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.ph-foot-social{margin-top:20px;gap:16px}
+.ph-foot-social svg{width:22px;height:22px}
+.ph-foot-bottom{
+  border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:22px;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:.85rem;opacity:.8;
+}
+
+/* =========================== RESPONSIVE =========================== */
+@media (max-width:1200px){ .ph-header .ph-cta{display:none} }
+@media (max-width:1120px){
+  .ph-nav,.ph-header .ph-cta{display:none}
+  .ph-burger{display:flex}
+  .ph-header.nav-open .ph-nav{
+    display:flex;position:absolute;top:88px;left:0;right:0;flex-direction:column;
+    background:var(--ph-card);border-bottom:1px solid var(--ph-line);
+    padding:14px;gap:4px;box-shadow:var(--ph-shadow);
+  }
+  .ph-header.nav-open .ph-nav a{padding:13px}
+  .ph-split{grid-template-columns:1fr;gap:34px}
+  .ph-grid{grid-template-columns:1fr 1fr}
+  .ph-teasers,.ph-badges{grid-template-columns:1fr}
+  .ph-facts .ph-wrap{flex-direction:column;gap:20px}
+  .ph-facts-cols{width:100%;grid-template-columns:1fr 1fr;gap:18px}
+  .ph-facts-bb img{height:52px}
+  .ph-foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .ph-grid{grid-template-columns:1fr}
+  .ph-foot-grid{grid-template-columns:1fr}
+  .ph-section{padding:62px 0}
+  .ph-wrap{padding:0 20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto !important;transition:none !important}
+}
+:focus-visible{outline:3px solid var(--ph-gold);outline-offset:2px;border-radius:6px}
+</style>
+
+<style>
+/* =========================== TOUR-DETAIL (ph-td-*) =========================== */
+.ph-td-back{display:inline-flex;align-items:center;gap:8px;color:var(--ph-bordeaux);
+  font-weight:700;text-decoration:none;font-size:.95rem}
+.ph-td-back:hover{gap:12px}
+
+.ph-td-hero{padding:44px 0 8px}
+.ph-td-hero h1{font-size:clamp(2rem,4.4vw,3.1rem);line-height:1.06;margin:14px 0 0}
+.ph-td-hero .ph-td-lead{color:var(--ph-muted);font-size:1.12rem;max-width:60ch;margin-top:16px}
+.ph-td-herophoto{margin-top:30px}
+.ph-td-herophoto .ph-photo{aspect-ratio:21/9}
+
+/* Route auf einen Blick */
+.ph-td-facts{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:8px}
+.ph-td-fact{background:var(--ph-card);border:1px solid var(--ph-line);
+  border-radius:var(--ph-radius);padding:20px 18px}
+.ph-td-fact span{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ph-gold);font-weight:700}
+.ph-td-fact b{display:block;font-family:"Fraunces",serif;font-size:1.16rem;font-weight:600;
+  color:var(--ph-ink);margin-top:6px;line-height:1.25}
+.ph-td-fact small{display:block;color:var(--ph-muted);font-size:.86rem;margin-top:2px}
+
+.ph-td-map{margin-top:26px}
+.ph-td-map .ph-photo{aspect-ratio:16/7}
+
+/* Timeline der Stopps */
+.ph-td-timeline{list-style:none;margin:8px 0 0;padding:0;position:relative}
+.ph-td-timeline::before{content:"";position:absolute;left:23px;top:12px;bottom:12px;width:2px;
+  background:linear-gradient(var(--ph-gold),var(--ph-line));opacity:.6}
+.ph-td-stop{position:relative;padding-left:66px;margin-bottom:34px}
+.ph-td-stop:last-child{margin-bottom:0}
+.ph-td-num{position:absolute;left:0;top:0;width:48px;height:48px;border-radius:50%;
+  display:grid;place-items:center;background:var(--ph-bordeaux);color:#fff;
+  font-family:"Fraunces",serif;font-size:1.25rem;font-weight:600;
+  box-shadow:0 8px 22px -12px rgba(122,30,34,.7);z-index:1}
+.ph-td-stop.is-finish .ph-td-num{background:var(--ph-gold)}
+.ph-td-card{background:var(--ph-card);border:1px solid var(--ph-line);
+  border-radius:var(--ph-radius);overflow:hidden;box-shadow:var(--ph-shadow);
+  display:grid;grid-template-columns:.9fr 1.1fr}
+.ph-td-card .ph-photo{border-radius:0;box-shadow:none;aspect-ratio:auto;height:100%;min-height:190px}
+.ph-td-card .ph-td-text{padding:24px 26px}
+.ph-td-card .ph-td-text h3{font-size:1.32rem;margin-bottom:8px}
+.ph-td-card .ph-td-text p{color:var(--ph-muted);margin:0;font-size:1rem}
+.ph-td-tagline{display:inline-block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ph-gold);font-weight:700;margin-bottom:6px}
+
+/* Varianten-Hinweis */
+.ph-td-variant{background:var(--ph-beige-2);border:1px dashed var(--ph-gold);
+  border-radius:var(--ph-radius);padding:22px 24px;margin-top:34px}
+.ph-td-variant h3{font-size:1.12rem;margin-bottom:6px;color:var(--ph-bordeaux)}
+.ph-td-variant p{color:var(--ph-muted);margin:0;font-size:.98rem}
+
+@media(max-width:820px){
+  .ph-td-facts{grid-template-columns:1fr 1fr}
+  .ph-td-card{grid-template-columns:1fr}
+  .ph-td-card .ph-photo{min-height:200px;aspect-ratio:16/9}
+  .ph-td-herophoto .ph-photo{aspect-ratio:16/10}
+}
+@media(max-width:520px){
+  .ph-td-facts{grid-template-columns:1fr}
+  .ph-td-stop{padding-left:56px}
+  .ph-td-num{width:42px;height:42px;font-size:1.1rem}
+  .ph-td-timeline::before{left:20px}
+}
+</style>
+
+</head>
+<body>
+
+<!-- ============ TOPBAR ============ -->
+<div class="ph-topbar">
+  <div class="ph-wrap">
+    <div class="ph-top-contact">
+      <span>📞 <a href="tel:+499353983860">09353 / 983860</a></span>
+      <span>📱 <a href="tel:+4915117262148">0151 17262148</a></span>
+      <span>✉ <a href="mailto:info@pension-heuler.de">info@pension-heuler.de</a></span>
+    </div>
+    <div class="ph-top-right">
+      <nav class="ph-social" aria-label="Soziale Netzwerke">
+        <a href="#" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.8c-3.15 0-3.52.01-4.76.07-.92.04-1.42.2-1.75.33-.44.17-.75.37-1.08.7-.33.33-.53.64-.7 1.08-.13.33-.29.83-.33 1.75-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.04.92.2 1.42.33 1.75.17.44.37.75.7 1.08.33.33.64.53 1.08.7.33.13.83.29 1.75.33 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c.92-.04 1.42-.2 1.75-.33.44-.17.75-.37 1.08-.7.33-.33.53-.64.7-1.08.13-.33.29-.83.33-1.75.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.04-.92-.2-1.42-.33-1.75a2.9 2.9 0 0 0-.7-1.08 2.9 2.9 0 0 0-1.08-.7c-.33-.13-.83-.29-1.75-.33-1.24-.06-1.61-.07-4.76-.07zm0 3.06A4.98 4.98 0 1 1 12 17a4.98 4.98 0 0 1 0-9.98zm0 8.21A3.23 3.23 0 1 0 12 8.77a3.23 3.23 0 0 0 0 6.46zm6.34-8.41a1.16 1.16 0 1 1-2.33 0 1.16 1.16 0 0 1 2.33 0z"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.92 3.78-3.92 1.1 0 2.24.2 2.24.2v2.48h-1.26c-1.24 0-1.63.78-1.63 1.58v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube" title="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.5a3.02 3.02 0 0 0-2.12-2.14C19.5 3.85 12 3.85 12 3.85s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.5C0 8.4 0 12 0 12s0 3.6.5 5.5a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51A3.02 3.02 0 0 0 23.5 17.5c.5-1.9.5-5.5.5-5.5s0-3.6-.5-5.5zM9.6 15.6V8.4l6.25 3.6-6.25 3.6z"/></svg>
+        </a>
+      </nav>
+      <nav class="ph-lang" aria-label="Sprache">
+        <a href="#" class="is-active">DE</a>
+        <a href="#">EN</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="ph-header" id="phHeader">
+  <div class="ph-wrap">
+    <!-- LOGO-PLATZHALTER: hier dein echtes Logo als <img> einsetzen -->
+    <a class="ph-logo" href="#" aria-label="Pension Heuler — Startseite">
+      <img class="ph-logo-img" src="data:image/webp;base64,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" alt="Logo Pension Heuler" width="76" height="53">
+      <span class="ph-logo-txt">
+        <small>Gästehaus · <span class="ph-stars">★★★★</span></small>
+        <b>Pension Heuler</b>
+      </span>
+    </a>
+
+    <nav class="ph-nav" aria-label="Hauptnavigation">
+      <a href="index.html">Startseite</a>
+      <a href="#haus">Unser Haus</a>
+      <a href="#zimmer">Unsere Zimmer</a>
+      <a href="#fruehstueck">Offenes Frühstück</a>
+      <a href="#pauschalen">Pauschalprogramme</a>
+      <a href="index.html#ausflug" class="is-active">Ausflugstipps</a>
+    </nav>
+
+    <a href="#anfrage" class="ph-cta">Anfragen</a>
+    <button class="ph-burger" id="phBurger" aria-label="Menü öffnen" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ TOUR-HERO ============ -->
+<section class="ph-td-hero">
+  <div class="ph-wrap">
+    <a class="ph-td-back" href="fahrradtouren.html">&larr; Zurück zu den Fahrradtouren</a>
+    <span class="ph-eyebrow" style="margin-top:18px;display:inline-flex">Radtour · Rundtour ab Haustür</span>
+    <h1>Die Bachgrund-Panorama-Tour</h1>
+    <p class="ph-td-lead">Diese Tour beginnt und endet direkt vor der Pension Heuler. Sie führt hinauf
+      auf die sonnigen Höhen rechts und links des Aschbaches, über weite Fluren mit Blick bis in die
+      Rhön und durch die stillen Bachgrund-Dörfer Obersfeld, Hundsbach und Aschfeld. Ausgesucht und
+      beschrieben wurde die Strecke von Manfred Kleinwechter.</p>
+    <div class="ph-td-herophoto">
+      <div class="ph-photo" data-ratio="wide"><div class="ph-photo-tag"><div class="ph-gable"></div>Foto: Panorama Bachgrund-Tour<small>folgt</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROUTE AUF EINEN BLICK ============ -->
+<section class="ph-section">
+  <div class="ph-wrap">
+    <div class="ph-section-head">
+      <span class="ph-eyebrow">Überblick</span>
+      <h2>Route auf einen Blick</h2>
+    </div>
+    <div class="ph-td-facts">
+        <div class="ph-td-fact"><span>Länge</span><b>ca. 33 km</b><small>Rundtour</small></div>
+        <div class="ph-td-fact"><span>Schwierigkeit</span><b>mittelschwer</b><small>gute Kondition</small></div>
+        <div class="ph-td-fact"><span>Charakter</span><b>Höhen &amp; Panorama</b><small>Feld- &amp; Wanderwege</small></div>
+        <div class="ph-td-fact"><span>Start &amp; Ziel</span><b>Pension Heuler</b><small>Eußenheim</small></div>
+        <div class="ph-td-fact"><span>Einkehr</span><b>in Obersfeld</b><small>nach Absprache</small></div>
+    </div>
+    <div class="ph-td-map">
+      <div class="ph-photo" data-ratio="wide"><div class="ph-photo-tag"><div class="ph-gable"></div>Kartenausschnitt: Eußenheim &ndash; Obersfeld &ndash; Hundsbach &ndash; Aschfeld<small>Streckenkarte folgt</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STOPPS ENTLANG DER STRECKE ============ -->
+<section class="ph-section alt">
+  <div class="ph-wrap">
+    <div class="ph-section-head">
+      <span class="ph-eyebrow">Unterwegs</span>
+      <h2>Stopps entlang der Strecke</h2>
+      <p>Von der Haustür über die Höhen des Aschgrunds und wieder zurück – die schönsten Punkte der Runde.</p>
+    </div>
+    <ol class="ph-td-timeline">
+      <li class="ph-td-stop">
+        <div class="ph-td-num">1</div>
+        <div class="ph-td-card">
+          <div class="ph-photo"><div class="ph-photo-tag"><div class="ph-gable"></div>Foto: Pension Heuler / Eußenheim<small>folgt</small></div></div>
+          <div class="ph-td-text">
+            <span class="ph-td-tagline">Start</span>
+            <h3>Pension Heuler, Eußenheim</h3>
+            <p>Vom Radweg direkt vor dem Haus geht es nach rechts los. Schon nach wenigen Metern zweigt der Wanderweg 5 ab – und der ruhige Aufstieg aus dem Werntal hinauf in den Bachgrund beginnt.</p>
+          </div>
+        </div>
+      </li>
+      <li class="ph-td-stop">
+        <div class="ph-td-num">2</div>
+        <div class="ph-td-card">
+          <div class="ph-photo"><div class="ph-photo-tag"><div class="ph-gable"></div>Foto: Aufstieg Wanderweg 5<small>folgt</small></div></div>
+          <div class="ph-td-text">
+            <span class="ph-td-tagline">Aufstieg</span>
+            <h3>Über den Neubergsgraben (Wanderweg 5)</h3>
+            <p>Rund drei Kilometer geht es in mäßiger, gleichmäßiger Steigung geradeaus bergan – vorbei an Feldern und Hängen, bis man die Höhe erreicht. Ein Einstieg, der die Beine in Ruhe warmfährt.</p>
+          </div>
+        </div>
+      </li>
+      <li class="ph-td-stop">
+        <div class="ph-td-num">3</div>
+        <div class="ph-td-card">
+          <div class="ph-photo"><div class="ph-photo-tag"><div class="ph-gable"></div>Foto: Windpark Heßlar / Fernblick<small>folgt</small></div></div>
+          <div class="ph-td-text">
+            <span class="ph-td-tagline">Weitblick</span>
+            <h3>Auf der Höhe: Blick zum Windpark Heßlar</h3>
+            <p>Am Sendemast öffnet sich der erste weite Blick über das Land, mit den Windrädern des Windparks Heßlar am Horizont. Ein guter Platz für eine erste kurze Pause.</p>
+          </div>
+        </div>
+      </li>
+      <li class="ph-td-stop">
+        <div class="ph-td-num">4</div>
+        <div class="ph-td-card">
+          <div class="ph-photo"><div class="ph-photo-tag"><div class="ph-gable"></div>Foto: Panorama über die Fluren<small>folgt</small></div></div>
+          <div class="ph-td-text">
+            <span class="ph-td-tagline">Panorama</span>
+            <h3>Über die Bachgrund-Dörfer bis in die Rhön</h3>
+            <p>Durch den Wald hinaus auf die Felder: Hier reicht der Blick über die weiten Fluren der Bachgrund-Dörfer an klaren Tagen bis in die Rhön – das namensgebende Panorama dieser Tour.</p>
+          </div>
+        </div>
+      </li>
+      <li class="ph-td-stop">
+        <div class="ph-td-num">5</div>
+        <div class="ph-td-card">
+          <div class="ph-photo"><div class="ph-photo-tag"><div class="ph-gable"></div>Foto: Obersfeld / Dorfkirche<small>folgt</small></div></div>
+          <div class="ph-td-text">
+            <span class="ph-td-tagline">Dorf</span>
+            <h3>Obersfeld</h3>
+            <p>Eine schöne Abfahrt führt hinunter ins Dorf. Am Friedhof vorbei und die Wintertalstraße entlang geht es zum Ortsrand. Wer rasten möchte, findet in Obersfeld Einkehrmöglichkeiten (nach Absprache).</p>
+          </div>
+        </div>
+      </li>
+      <li class="ph-td-stop">
+        <div class="ph-td-num">6</div>
+        <div class="ph-td-card">
+          <div class="ph-photo"><div class="ph-photo-tag"><div class="ph-gable"></div>Foto: Ruhebank an der Quelle<small>folgt</small></div></div>
+          <div class="ph-td-text">
+            <span class="ph-td-tagline">Ruheplatz</span>
+            <h3>Versteckte Ruhebank an der Quelle</h3>
+            <p>Kurz nach einem Schilfgebiet liegt links vom Weg, ein wenig verborgen, eine Ruhebank an einer erfrischenden Quelle – der stillste Platz der ganzen Runde.</p>
+          </div>
+        </div>
+      </li>
+      <li class="ph-td-stop">
+        <div class="ph-td-num">7</div>
+        <div class="ph-td-card">
+          <div class="ph-photo"><div class="ph-photo-tag"><div class="ph-gable"></div>Foto: Hundsbach / Ortsansicht<small>folgt</small></div></div>
+          <div class="ph-td-text">
+            <span class="ph-td-tagline">Entscheidung</span>
+            <h3>Hundsbach – hier teilt sich die Tour</h3>
+            <p>In Hundsbach führt an der Einfahrt zum Sportplatz die Wahl zwischen zwei Wegen: der sportlichen Panorama-Variante mit weiteren Steigungen (hier beschrieben) und dem bequemen Radweg durchs Ostertal. Beide bringen Sie am Ende nach Eußenheim zurück.</p>
+          </div>
+        </div>
+      </li>
+      <li class="ph-td-stop">
+        <div class="ph-td-num">8</div>
+        <div class="ph-td-card">
+          <div class="ph-photo"><div class="ph-photo-tag"><div class="ph-gable"></div>Foto: Kirchenburg Aschfeld<small>folgt</small></div></div>
+          <div class="ph-td-text">
+            <span class="ph-td-tagline">Höhepunkt</span>
+            <h3>Aschfeld und die historische Kirchenburg</h3>
+            <p>Nach einer letzten, kurzen und steilen Höhe rollt man durch Wald und Felder hinab nach Aschfeld. Über dem Dorf thront die historische Kirchenburg St. Bonifatius – eine mittelalterliche Flieh- und Wehranlage auf steilem Felsvorsprung, die nie eingenommen wurde. In ihren liebevoll hergerichteten Gaden erzählt heute ein kleines Dorfgeschichts-Museum vom früheren Leben im Bachgrund. Führungen sind auf Anfrage möglich.</p>
+          </div>
+        </div>
+      </li>
+      <li class="ph-td-stop is-finish">
+        <div class="ph-td-num">✓</div>
+        <div class="ph-td-card">
+          <div class="ph-photo"><div class="ph-photo-tag"><div class="ph-gable"></div>Foto: Radweg Richtung Eußenheim<small>folgt</small></div></div>
+          <div class="ph-td-text">
+            <span class="ph-td-tagline">Ankunft</span>
+            <h3>Zurück nach Eußenheim – Rundtour ab Haustür</h3>
+            <p>Vom Ortsrand Aschfeld bringt der Radweg – mit einem letzten Blick zurück auf die Kirchenburg – bequem durch die Felder zurück nach Eußenheim und direkt vor die Tür der Pension Heuler.</p>
+          </div>
+        </div>
+      </li>
+    </ol>
+
+    <div class="ph-td-variant">
+      <h3>Lieber bequem? Die Variante durchs Ostertal</h3>
+      <p>Ab Hundsbach gibt es eine gemütlichere Alternative: den Radweg durchs Ostertal nach Aschfeld
+      und zurück nach Eußenheim – ohne die steilen Höhen der Panorama-Variante. Sobald die passende
+      Tour fertig ist, verlinken wir sie hier.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="ph-cta-band">
+  <div class="ph-wrap">
+    <span class="ph-eyebrow">Direkt vor der Tür</span>
+    <h2>Radurlaub in Mainfranken – starten Sie bei uns</h2>
+    <p>Sichere Abstellmöglichkeit für Ihr Rad, ein kräftiges Frühstück für den Start und viele weitere
+      Touren rund um Eußenheim. Wir freuen uns auf Ihren Besuch.</p>
+    <a href="index.html#anfrage" class="ph-cta">Zimmer anfragen</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="ph-footer" id="ausflug">
+  <div class="ph-wrap">
+    <div class="ph-foot-grid">
+      <div>
+        <h4>Gästehaus Pension Heuler</h4>
+        <p>Familiengeführte 4-Sterne-Pension in ruhiger, idyllischer Lage mitten in Mainfranken. Komfort, Schwimmbad &amp; Sauna und herzliche Gastfreundschaft.</p>
+        <nav class="ph-social ph-foot-social" aria-label="Soziale Netzwerke">
+          <a href="#" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.8c-3.15 0-3.52.01-4.76.07-.92.04-1.42.2-1.75.33-.44.17-.75.37-1.08.7-.33.33-.53.64-.7 1.08-.13.33-.29.83-.33 1.75-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.04.92.2 1.42.33 1.75.17.44.37.75.7 1.08.33.33.64.53 1.08.7.33.13.83.29 1.75.33 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c.92-.04 1.42-.2 1.75-.33.44-.17.75-.37 1.08-.7.33-.33.53-.64.7-1.08.13-.33.29-.83.33-1.75.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.04-.92-.2-1.42-.33-1.75a2.9 2.9 0 0 0-.7-1.08 2.9 2.9 0 0 0-1.08-.7c-.33-.13-.83-.29-1.75-.33-1.24-.06-1.61-.07-4.76-.07zm0 3.06A4.98 4.98 0 1 1 12 17a4.98 4.98 0 0 1 0-9.98zm0 8.21A3.23 3.23 0 1 0 12 8.77a3.23 3.23 0 0 0 0 6.46zm6.34-8.41a1.16 1.16 0 1 1-2.33 0 1.16 1.16 0 0 1 2.33 0z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.92 3.78-3.92 1.1 0 2.24.2 2.24.2v2.48h-1.26c-1.24 0-1.63.78-1.63 1.58v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" title="YouTube">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.5a3.02 3.02 0 0 0-2.12-2.14C19.5 3.85 12 3.85 12 3.85s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.5C0 8.4 0 12 0 12s0 3.6.5 5.5a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51A3.02 3.02 0 0 0 23.5 17.5c.5-1.9.5-5.5.5-5.5s0-3.6-.5-5.5zM9.6 15.6V8.4l6.25 3.6-6.25 3.6z"/></svg>
+          </a>
+        </nav>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li>Am Gebersthal 6<br>97776 Eußenheim</li>
+          <li><a href="tel:+499353983860">09353 / 983860</a></li>
+          <li><a href="tel:+4915117262148">0151 17262148</a></li>
+          <li><a href="mailto:info@pension-heuler.de">info@pension-heuler.de</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Entdecken</h4>
+        <ul>
+          <li><a href="#haus">Unser Haus</a></li>
+          <li><a href="#zimmer">Unsere Zimmer</a></li>
+          <li><a href="#fruehstueck">Offenes Frühstück</a></li>
+          <li><a href="#pauschalen">Pauschalprogramme</a></li>
+          <li><a href="#ausflug">Ausflugstipps</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ph-foot-bottom">
+      <span>© <span id="phYear"></span> Gästehaus Pension Heuler · Am Gebersthal 6 · 97776 Eußenheim</span>
+      <span><a href="#">Datenschutzerklärung</a> · <a href="#">Impressum</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile-Navigation
+  var burger = document.getElementById('phBurger');
+  var header = document.getElementById('phHeader');
+  burger.addEventListener('click', function(){
+    var open = header.classList.toggle('nav-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+  });
+  header.querySelectorAll('.ph-nav a').forEach(function(a){
+    a.addEventListener('click', function(){ header.classList.remove('nav-open'); });
+  });
+
+  // Header-Schatten beim Scrollen
+  window.addEventListener('scroll', function(){
+    header.classList.toggle('is-scrolled', window.scrollY > 8);
+  }, {passive:true});
+
+  // Jahr im Footer
+  document.getElementById('phYear').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
